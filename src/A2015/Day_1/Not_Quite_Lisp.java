@@ -1,16 +1,19 @@
-package VSCode_Exercises.AdventOfCode.A2015.Day_1;
+package A2015.Day_1;
 
 import java.io.BufferedReader;
 import java.io.FileReader;
 import java.io.IOException;
+import java.io.File;
 
-import VSCode_Exercises.AdventOfCode.Conveniencer;
+import lib.Conveniencer;
 
 public class Not_Quite_Lisp {
-    private static final String DIRECTORY = "VSCode_Exercises/AdventOfCode/A2015/Day_1/input.txt";
+    private static final String PROJECT_PATH = new File("").getAbsolutePath();
+    private static final String FILE_PATH = PROJECT_PATH + "/src/A2015/Day_1/input.txt";
 
     public static void main(String[] args) {
-        String input = Conveniencer.getInput(DIRECTORY);
+        System.out.println(FILE_PATH);
+        String input = Conveniencer.getInput(FILE_PATH);
         //Exercise 1
         System.out.println(parenthesisCount(input));
         //Exercise 2
