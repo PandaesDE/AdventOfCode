@@ -1,4 +1,4 @@
-package VSCode_Exercises.AdventOfCode.A2015.Day_4;
+package aoc.A2015.Day_4;
 
 import java.security.MessageDigest;
 import java.security.NoSuchAlgorithmException;

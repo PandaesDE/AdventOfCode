@@ -1,6 +1,4 @@
-package VSCode_Exercises.AdventOfCode.B2016.Day_1;
-
-import java.util.ArrayList;
+package aoc.B2016.Day_1;
 
 public class Pair {
     private int x = 0;

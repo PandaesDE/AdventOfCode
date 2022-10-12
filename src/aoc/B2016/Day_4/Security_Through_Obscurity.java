@@ -1,16 +1,17 @@
-package VSCode_Exercises.AdventOfCode.B2016.Day_4;
+package aoc.B2016.Day_4;
 
 import java.util.ArrayList;
 import java.util.Arrays;
 import java.util.Collections;
 import java.util.Comparator;
 
-import VSCode_Exercises.AdventOfCode.Conveniencer;
+import aoc.Conveniencer;
 
 public class Security_Through_Obscurity {
-    private static final String DIRECTORY = "VSCode_Exercises/AdventOfCode/B2016/Day_4/input.txt";
+    private static final String FILE_PATH = Conveniencer.getProjectPath() + "/src/aoc/B2016/Day_4/input.txt";
+
     public static void main(String[] args) {
-        String input = Conveniencer.getInput(DIRECTORY);
+        String input = Conveniencer.getInput(FILE_PATH);
         //Exercise 1
         System.out.println(getSectorIDSum(input));
         //Exercise 2

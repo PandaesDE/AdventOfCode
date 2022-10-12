@@ -1,14 +1,15 @@
-package VSCode_Exercises.AdventOfCode.B2016.Day_6;
+package aoc.B2016.Day_6;
 
 import java.util.ArrayList;
 import java.util.HashMap;
 
-import VSCode_Exercises.AdventOfCode.Conveniencer;
+import aoc.Conveniencer;
 
 public class Signals_and_Noise {
-    private static final String DIRECTORY = "VSCode_Exercises/AdventOfCode/B2016/Day_6/input.txt";
+    private static final String FILE_PATH = Conveniencer.getProjectPath() + "/src/aoc/B2016/Day_1/input.txt";
+
     public static void main(String[] args) {
-        String input = Conveniencer.getInput(DIRECTORY);
+        String input = Conveniencer.getInput(FILE_PATH);
         //Exercise 1
         System.out.println(getErrorCorrectedVersion(createColumnStrings(input)));
         //Exercise 2

@@ -1,15 +1,15 @@
-package VSCode_Exercises.AdventOfCode.A2015.Day_7;
+package aoc.A2015.Day_7;
 
 import java.util.ArrayList;
 import java.util.HashMap;
 
-import VSCode_Exercises.AdventOfCode.Conveniencer;
+import aoc.Conveniencer;
 
 public class Some_Assembly_Required {
-    private static final String DIRECTORY = "VSCode_Exercises/AdventOfCode/A2015/Day_7/input.txt";
+    private static final String FILE_PATH = Conveniencer.getProjectPath() + "/src/aoc/A2015/Day_7/input.txt";
     private static final int MAX_BIX = 16;
     public static void main(String[] args) {
-        String input = Conveniencer.getInput(DIRECTORY);
+        String input = Conveniencer.getInput(FILE_PATH);
         //Exercise 1
         System.out.println(getSignalOfWire(input, "a"));
         //testAllBitOperations(1, 1);

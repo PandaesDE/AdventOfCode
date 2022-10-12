@@ -1,13 +1,12 @@
 package aoc.A2015.Day_2;
 
-import java.io.File;
 import java.util.ArrayList;
 
 import aoc.Conveniencer;
 
 public class I_Was_Told_There_Would_Be_No_Math {
-    private static final String PROJECT_PATH = new File("").getAbsolutePath();
-    private static final String FILE_PATH = PROJECT_PATH + "/src/aoc/A2015/Day_2/input.txt";
+    private static final String FILE_PATH = Conveniencer.getProjectPath() + "/src/aoc/A2015/Day_2/input.txt";
+
 
     public static void main(String[] args) {
         String input = Conveniencer.getInput(FILE_PATH);

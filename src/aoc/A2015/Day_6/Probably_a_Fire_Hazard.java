@@ -1,18 +1,18 @@
-package VSCode_Exercises.AdventOfCode.A2015.Day_6;
+package aoc.A2015.Day_6;
 
 import java.util.ArrayList;
 
-import VSCode_Exercises.AdventOfCode.Conveniencer;
+import aoc.Conveniencer;
 
 public class Probably_a_Fire_Hazard {
-    private static final String DIRECTORY = "VSCode_Exercises/AdventOfCode/A2015/Day_6/input.txt";
+    private static final String FILE_PATH = Conveniencer.getProjectPath() + "/src/aoc/A2015/Day_6/input.txt";
     private static final int LIGHTS_X = 1000;
     private static final int LIGHTS_Y = 1000;
     private static boolean[][] lights = new boolean[LIGHTS_Y][LIGHTS_X];
     private static int[][] brightLights = new int[LIGHTS_Y][LIGHTS_X];
     
     public static void main(String[] args) {
-        String input = Conveniencer.getInput(DIRECTORY);
+        String input = Conveniencer.getInput(FILE_PATH);
         initializeLightsandBrightLights();
         //Exercise 1
         initializeInstructions(input);

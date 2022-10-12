@@ -1,13 +1,14 @@
-package VSCode_Exercises.AdventOfCode.B2016.Day_3;
+package aoc.B2016.Day_3;
 
 import java.util.ArrayList;
 
-import VSCode_Exercises.AdventOfCode.Conveniencer;
+import aoc.Conveniencer;
 
 public class Squares_With_Three_Sides {
-    private static final String DIRECTORY = "VSCode_Exercises/AdventOfCode/B2016/Day_3/input.txt";
+    private static final String FILE_PATH = Conveniencer.getProjectPath() + "/src/aoc/B2016/Day_3/input.txt";
+
     public static void main(String[] args) {
-        String input = Conveniencer.getInput(DIRECTORY);
+        String input = Conveniencer.getInput(FILE_PATH);
         //Exercise 1
         System.out.println(getTriangleAmount(input));
         //Exercise 2

@@ -1,14 +1,14 @@
-package VSCode_Exercises.AdventOfCode.A2015.Day_5;
+package aoc.A2015.Day_5;
 
 import java.util.ArrayList;
 
-import VSCode_Exercises.AdventOfCode.Conveniencer;
+import aoc.Conveniencer;
 
 public class Doesnt_He_Have_Intern_Elves_For_This {
-    private static final String DIRECTORY = "VSCode_Exercises/AdventOfCode/A2015/Day_5/input.txt";
+    private static final String FILE_PATH = Conveniencer.getProjectPath() + "/src/aoc/A2015/Day_5/input.txt";
     
     public static void main(String[] args){
-        String input = Conveniencer.getInput(DIRECTORY);
+        String input = Conveniencer.getInput(FILE_PATH);
         //Exercise 1
         System.out.println(countNiceStrings(input));
         //Exercise 2

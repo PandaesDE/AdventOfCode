@@ -1,15 +1,15 @@
-package VSCode_Exercises.AdventOfCode.A2015.Day_3;
+package aoc.A2015.Day_3;
 
 
 import java.util.ArrayList;
 
-import VSCode_Exercises.AdventOfCode.Conveniencer;
+import aoc.Conveniencer;
 
 public class Perfectly_Spherical_Houses_in_a_Vacuum {
-    private static final String DIRECTORY = "VSCode_Exercises/AdventOfCode/A2015/Day_3/input.txt";
+    private static final String FILE_PATH = Conveniencer.getProjectPath() + "/src/aoc/A2015/Day_3/input.txt";
     
     public static void main(String[] args) {
-        String input = Conveniencer.getInput(DIRECTORY);
+        String input = Conveniencer.getInput(FILE_PATH);
         //Exercise 1
         System.out.println(getTotalHouseAmount(input));
         //Exercise 2

@@ -1,12 +1,9 @@
 package aoc.A2015.Day_1;
 
-import java.io.File;
-
 import aoc.Conveniencer;
 
 public class Not_Quite_Lisp {
-    private static final String PROJECT_PATH = new File("").getAbsolutePath();
-    private static final String FILE_PATH = PROJECT_PATH + "/src/aoc/A2015/Day_1/input.txt";
+    private static final String FILE_PATH = Conveniencer.getProjectPath() + "/src/aoc/A2015/Day_1/input.txt";
 
     public static void main(String[] args) {
         System.out.println(FILE_PATH);

@@ -1,13 +1,14 @@
-package VSCode_Exercises.AdventOfCode.B2016.Day_2;
+package aoc.B2016.Day_2;
 
 import java.util.ArrayList;
 
-import VSCode_Exercises.AdventOfCode.Conveniencer;
+import aoc.Conveniencer;
 
 public class Bathroom_Security {
-    private static final String DIRECTORY = "VSCode_Exercises/AdventOfCode/B2016/Day_2/input.txt";
+    private static final String FILE_PATH = Conveniencer.getProjectPath() + "/src/aoc/B2016/Day_2/input.txt";
+
     public static void main(String[] args) {
-        String input = Conveniencer.getInput(DIRECTORY);
+        String input = Conveniencer.getInput(FILE_PATH);
         //Exercise 1
         System.out.println(getCode(input));
         //Exercise 2

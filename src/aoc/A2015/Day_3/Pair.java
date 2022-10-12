@@ -1,4 +1,4 @@
-package VSCode_Exercises.AdventOfCode.A2015.Day_3;
+package aoc.A2015.Day_3;
 
 public class Pair {
     private int x = 0;

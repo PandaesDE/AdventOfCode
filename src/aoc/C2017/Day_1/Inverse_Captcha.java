@@ -1,12 +1,12 @@
-package VSCode_Exercises.AdventOfCode.C2017.Day_1;
+package aoc.C2017.Day_1;
 
-import VSCode_Exercises.AdventOfCode.Conveniencer;
+import aoc.Conveniencer;
 
 public class Inverse_Captcha {
-    private static final String DIRECTORY = "VSCode_Exercises/AdventOfCode/C2017/Day_1/input.txt";
+    private static final String FILE_PATH = Conveniencer.getProjectPath() + "/src/aoc/C2017/Day_1/input.txt";
 
     public static void main(String[] args) {
-        String input = Conveniencer.getInput(DIRECTORY);
+        String input = Conveniencer.getInput(FILE_PATH);
          //Exercise 1
         System.out.println(getCaptchaAtNextIndex(input));
          //Exercise 2

@@ -1,11 +1,11 @@
-package VSCode_Exercises.AdventOfCode.B2016.Day_1;
+package aoc.B2016.Day_1;
 
 import java.util.ArrayList;
 
-import VSCode_Exercises.AdventOfCode.Conveniencer;
+import aoc.Conveniencer;
 
 public class No_Time_for_a_Taxicab {
-    private static final String DIRECTORY = "VSCode_Exercises/AdventOfCode/B2016/Day_1/input.txt";
+    private static final String FILE_PATH = Conveniencer.getProjectPath() + "/src/aoc/B2016/Day_1/input.txt";
     private static int X_POSITION = 0;
     private static int Y_POSITION = 0;
     private static char DIRECTION = 'N';
@@ -14,7 +14,7 @@ public class No_Time_for_a_Taxicab {
 
     
     public static void main(String[] args) {
-        String input = Conveniencer.getInput(DIRECTORY);
+        String input = Conveniencer.getInput(FILE_PATH);
         ArrayList<String> instructions = storeInput(trimInput(input));
         //Exercise 1
         calculateXAndYPosition(instructions);

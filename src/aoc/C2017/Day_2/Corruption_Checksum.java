@@ -1,15 +1,15 @@
-package VSCode_Exercises.AdventOfCode.C2017.Day_2;
+package aoc.C2017.Day_2;
 
 import java.util.ArrayList;
 import java.util.Collections;
 
-import VSCode_Exercises.AdventOfCode.Conveniencer;
+import aoc.Conveniencer;
 
 public class Corruption_Checksum {
-    private static final String DIRECTORY = "VSCode_Exercises/AdventOfCode/C2017/Day_2/input.txt";
+    private static final String FILE_PATH = Conveniencer.getProjectPath() + "/src/aoc/C2017/Day_2/input.txt";
 
     public static void main(String[] args) {
-        String input = Conveniencer.getInput(DIRECTORY);
+        String input = Conveniencer.getInput(FILE_PATH);
         //Exercise 1
         System.out.println(getChecksumOfHighestAndLowest(input));
         //Exercise 2
