@@ -1,14 +1,16 @@
-package VSCode_Exercises.AdventOfCode.A2015.Day_2;
+package aoc.A2015.Day_2;
 
+import java.io.File;
 import java.util.ArrayList;
 
-import VSCode_Exercises.AdventOfCode.Conveniencer;
+import aoc.Conveniencer;
 
 public class I_Was_Told_There_Would_Be_No_Math {
-    private static final String DIRECTORY = "VSCode_Exercises/AdventOfCode/A2015/Day_2/input.txt";
+    private static final String PROJECT_PATH = new File("").getAbsolutePath();
+    private static final String FILE_PATH = PROJECT_PATH + "/src/aoc/A2015/Day_2/input.txt";
 
     public static void main(String[] args) {
-        String input = Conveniencer.getInput(DIRECTORY);
+        String input = Conveniencer.getInput(FILE_PATH);
         //Exercise 1
         System.out.println(getTotalDimension(Conveniencer.convertTextToLines(input)));
         //Exercise 2
