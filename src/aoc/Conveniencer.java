@@ -50,7 +50,7 @@ public class Conveniencer {
             int i = Integer.parseInt(s);
             return i;
         } catch (NumberFormatException e) {
-            System.out.println("Entered String can not be parsed to an int value, returned int = 0");
+            System.out.println("\"" + s + "\" can not be parsed to an int value, returned int = 0");
             return 0;
         }
     }
