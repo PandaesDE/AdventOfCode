@@ -1,4 +1,4 @@
-package aoc.I2022.Day_1;
+package aoc.I2022.Day01;
 
 import java.util.ArrayList;
 import java.util.Comparator;
@@ -10,14 +10,16 @@ import java.util.stream.Collectors;
 import aoc.Conveniencer;
 
 public class Calorie_Counting {
-    private static final String FILE_PATH = Conveniencer.getProjectPath() + "/src/aoc/I2022/Day_1/input.txt";
+    private static final String FILE_PATH = Conveniencer.getProjectPath() + "/src/aoc/I2022/Day01/input.txt";
     private static HashMap<Integer,Integer> cals = new HashMap<Integer,Integer>();
 
     public static void main(String[] args) {
         String input = Conveniencer.getInput(FILE_PATH);
         initializeCals(Conveniencer.convertTextToLines(input));
         sortCals();
+        //1
         System.out.println(getCaloriesOfElvesWithMostSnacks(1));
+        //2
         System.out.println(getCaloriesOfElvesWithMostSnacks(3));
     }
 
