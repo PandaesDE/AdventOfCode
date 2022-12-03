@@ -12,6 +12,7 @@ public class Rock_Paper_Scissors {
         ArrayList<String> rounds = Conveniencer.convertTextToLines(input);
         //1
         System.out.println(calculateScoreByGuide(rounds));
+        //2
         System.out.println(calculateScoreByTrueGuide(rounds));
     }
 
