@@ -8,109 +8,138 @@ import aoc.Conveniencer;
 public class Some_Assembly_Required {
     private static final String FILE_PATH = Conveniencer.getProjectPath() + "/src/aoc/A2015/Day_7/input.txt";
     private static final int MAX_BIX = 16;
+
+    private static HashMap<String, WireConnection> wireConnections = new HashMap<>();
+
     public static void main(String[] args) {
         String input = Conveniencer.getInput(FILE_PATH);
-        //Exercise 1
-        System.out.println(getSignalOfWire(input, "a"));
+        ArrayList<String> opterations = Conveniencer.convertTextToLines(input); //tree mby better?
+        initializeWireConnections(opterations);
+        //1
+        System.out.println(getWireValue(new Wire("a")));
         //testAllBitOperations(1, 1);
         
 
     }
 
-    private static int getSignalOfWire(String signals, String wire) {
-        HashMap<String,Integer> valueStorage = new HashMap<String, Integer>();
-        ArrayList<String> lines = Conveniencer.convertTextToLines(signals);
-        for (String iString : lines) {
-            String operator = getOperator(iString);
-            String[] variables = getVariables(iString, operator);
-            valueStorage = storeValues(operator, variables, valueStorage);
-            valueStorage = makeOperation(operator, variables, valueStorage);
-        }
-        System.out.println(valueStorage);
+    private static int getWireValue(Wire wire) {
+        int val = 0;
 
-        try {return valueStorage.get(wire);}
-        catch(Exception e) {return -1;}
+        if (wireConnections.containsKey(wire.getName())) {
+            val = wireConnections.get(wire.getName()).getOutput().getValue();
+        } else {
+            val = wire.getValue();
+        }
+
+        //System.out.println(val); //DEBUG
+        if (val != -1) {
+            return val; 
+        }
+
+        return getOperationValue(wireConnections.get(wire.getName()));
     }
 
-    private static HashMap<String,Integer> storeValues(String operator, String[] variables, HashMap<String, Integer> storage) {
-        for (int i = 0; i<variables.length; i++) {
-            if (!storage.containsKey(variables[i])) 
-                if (!stringIsInt(variables[i])) storage.put(variables[i], 0);
+    private static int getOperationValue(WireConnection wc) {
+        //System.out.println(wc.toString()); //DEBUG
+
+        if (wc.getOperator() == "AND") {
+            return bitwiseAnd(getWireValue(wc.getInput1()), getWireValue(wc.getInput2()));
         }
-        return storage;
+        if (wc.getOperator() == "OR") {
+            return bitwiseOr(getWireValue(wc.getInput1()), getWireValue(wc.getInput2()));
+        }
+        if (wc.getOperator() == "NOT") {
+            return not(getWireValue(wc.getInput1()));
+        }
+        if (wc.getOperator() == "RSHIFT") {
+            return lShift(getWireValue(wc.getInput1()), getWireValue(wc.getInput2()));
+        }
+        if (wc.getOperator() == "LSHIFT") {
+            return rShift(getWireValue(wc.getInput1()), getWireValue(wc.getInput2()));
+        }
+        return getWireValue(wc.getInput1());
     }
 
-    private static HashMap<String,Integer> makeOperation(String operator, String[] variables, HashMap<String, Integer> storage) {
-        String output = variables[variables.length-1];
-        switch (operator.toUpperCase()) {
-            case "AND":
-                if (!stringIsInt(variables[0]) && !stringIsInt(variables[1]))
-                    storage.replace(output, bitwiseAnd(storage.get(variables[0]), storage.get(variables[1])));
-                break;
-            case "OR":
-                if (!stringIsInt(variables[0]) && !stringIsInt(variables[1]))
-                    storage.replace(output, bitwiseOr(storage.get(variables[0]), storage.get(variables[1])));
-                break;
-            case "RSHIFT":
-                if (!stringIsInt(variables[0]) && !stringIsInt(variables[1]))
-                    storage.replace(output, rShift(storage.get(variables[0]), storage.get(variables[1])));
-                break;
-            case "LSHIFT":
-                if (!stringIsInt(variables[0]) && !stringIsInt(variables[1]))
-                    storage.replace(output, lShift(storage.get(variables[0]), storage.get(variables[1])));
-                break;
-            case "NOT":
-                if (!stringIsInt(variables[0]))
-                    storage.replace(output, not(storage.get(variables[0]), MAX_BIX));
-                break;
-            case "EQUALS":
-                if (!stringIsInt(variables[0]))
-                    storage.replace(output, storage.get(variables[0]));
-                break;
-        }
-        return storage;
-    }
-
-    private static boolean stringIsInt(String s){
-        try {
-            Integer.parseInt(s);
-            return true;
-        } catch (NumberFormatException e) {
-            return false;
+    private static void initializeWireConnections(ArrayList<String> operations) {
+        for (String i : operations) {
+            initializeWireConnection(i);
         }
     }
 
-    private static String[] getVariables(String line, String operator) {
-        line = line.replaceAll(operator, ",");
-        line = line.replaceAll(" ", "");
-        line = line.replaceAll("->", ",");
-        if (line.charAt(0) == ',') line = line.substring(1, line.length());
-        return line.split(",");
-    } 
+    private static void initializeWireConnection(String instruction) {
+        String operator = getOperator(instruction);
+        String[] inputs = getInputWires(instruction, operator);
+        String output = getOutputWire(instruction);
 
-    private static String getOperator(String line) {
-        String operator = "";
-        for (int i = 0; i<line.length(); i++) {
-            if (line.charAt(i) >= 'A' && line.charAt(i) <= 'Z') {
-                operator += line.charAt(i);
+        if (wireConnections.containsKey(output)) {
+            if (inputs.length == 1) {
+                wireConnections.get(output).setOutput(new Wire(output));
+                wireConnections.get(output).setInput1(new Wire(inputs[0]));
+                wireConnections.get(output).setOperator(operator);
+            } else {
+                wireConnections.get(output).setOutput(new Wire(output));
+                wireConnections.get(output).setInput1(new Wire(inputs[0]));
+                wireConnections.get(output).setInput2(new Wire(inputs[1]));
+                wireConnections.get(output).setOperator(operator);
+            }
+        } else {
+            if (inputs.length == 1) {
+                wireConnections.put(output, new WireConnection(
+                    new Wire(inputs[0]),
+                    new Wire(output),
+                    operator
+                ));
+            } else {
+                wireConnections.put(output, new WireConnection(
+                    new Wire(inputs[0]),
+                    new Wire(inputs[1]),
+                    new Wire(output),
+                    operator
+                ));
             }
         }
-        if (operator.equals("")) operator = "EQUALS";
-        return operator;
-    }
- 
-    private static void testAllBitOperations(int x, int y) {
-        int maxBits = MAX_BIX;
-        System.out.println("x: " + x + " y: " + y
-                         + "\nAnd: " + bitwiseAnd(x, y) 
-                         + "\nOr: " + bitwiseOr(x, y) 
-                         + "\nrShift: " + rShift(x, y)
-                         + "\nlShift: " + lShift(x, y)
-                         + "\nnotX: " + not(x, maxBits)
-                         + "\nnotY: " + not(y, maxBits));
+
+        //System.out.print(instruction + " | ");
+        //
+        //for (int i = 0; i<inputs.length; i++) {
+        //    System.out.print(inputs[i] + " ");
+        //}
+        //
+        //System.out.println("| " + operator + " | " + output);
     }
 
-    private static int not(int a, int maxBit) {return (int) (Math.pow(2, maxBit) - 1) - a;}
+    private static String getOutputWire(String instruction) {
+        instruction = instruction.replaceAll(" ", "");
+        return instruction.substring(instruction.indexOf(">")+1, instruction.length());
+    }
+
+    /*
+     * returns stringarray with wires and values of the left hand side of the operation
+     */
+    private static String[] getInputWires(String instruction, String operator) {
+        instruction = instruction.substring(0, instruction.indexOf("-"));
+        instruction = instruction.replaceAll(" ", "");
+        if (operator == "NOT" || operator == "EQUALS") {
+            return new String[] {instruction.replaceAll(operator, "")};
+        }
+        return instruction.split(operator);
+    }
+
+
+    /*
+     * only one operator possible per instruction!
+     */
+    private static String getOperator(String instruction) {
+        if (instruction.contains("AND")) return "AND";
+        if (instruction.contains("OR")) return "OR";
+        if (instruction.contains("NOT")) return "NOT";
+        if (instruction.contains("RSHIFT")) return "RSHIFT";
+        if (instruction.contains("LSHIFT")) return "LSHIFT";
+        return "EQUALS";
+    }
+
+
+    private static int not(int a) {return (int) (Math.pow(2, MAX_BIX) - 1) - a;}
 
     private static int lShift(int a, int shift) {return a << shift;}
 
@@ -119,6 +148,4 @@ public class Some_Assembly_Required {
     private static int bitwiseOr(int a, int b) {return a | b;}
 
     private static int bitwiseAnd(int a, int b) {return a & b;}
-
-
 }

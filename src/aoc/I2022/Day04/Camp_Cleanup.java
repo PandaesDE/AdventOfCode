@@ -38,6 +38,18 @@ public class Camp_Cleanup {
         return counter;
     }
 
+    /*  int[] ranges:
+     *      [0]: start of first range
+     *      [1]: end of first range
+     *      [2]: start of second range
+     *      [3]: end of second range
+     * 
+     *  following statements are true for all ranges:
+     *      ranges.length == 4
+     *      [0] <= [1]
+     *      [2] <= [3]
+     */
+
     private static int[] pairStringToIntArray(String p) {
         String[] sRanges = p.split("[,\\-]");
         int[]  ranges = new int[sRanges.length];
@@ -60,16 +72,19 @@ public class Camp_Cleanup {
         int rangeSize1 = Math.abs(ranges[0] - ranges[1]);
         int rangeSize2 = Math.abs(ranges[2] - ranges[3]);
 
-        if (rangeSize1  > rangeSize2) {
+        if (rangeSize1 > rangeSize2) {
             if (ranges[0] <= ranges[2] && ranges[2] + rangeSize2 <= ranges[1])  return true;
             else return false;
-        } else if (rangeSize1  < rangeSize2) {
+        }
+
+        if (rangeSize1 < rangeSize2) {
             if (ranges[2] <= ranges[0] && ranges[0] + rangeSize1 <= ranges[3]) return true;
             else return false;
-        } else {
-            if (ranges[0] == ranges[2]) return true;
-            else return false;
         }
+
+        if (ranges[0] == ranges[2]) return true;
+        else return false;
+        
     }
     
 }
