@@ -29,7 +29,7 @@ public class WireConnection {
         }
         return "{" +
             " input1='" + getInput1().getName() + "'" +
-            ", input2='" + getInput2().getName() + "'" +
+            ", input2='" + ipt2 + "'" +
             ", output='" + getOutput().getName() + "'" +
             ", operator='" + getOperator() + "'" +
             "}";

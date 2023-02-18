@@ -13,15 +13,17 @@ public class Wire {
         }
     }
 
+
+    //getter
     public int getValue() {
         return this.value;
     }
-
 
     public String getName() {
         return this.name;
     }
 
+    //setter
     public void setName(String name) {
         this.name = name;
     }
