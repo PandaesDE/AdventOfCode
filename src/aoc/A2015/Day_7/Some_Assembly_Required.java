@@ -16,17 +16,20 @@ public class Some_Assembly_Required {
         ArrayList<String> opterations = Conveniencer.convertTextToLines(input); //tree mby better?
         initializeWireConnections(opterations);
         //1
-        System.out.println(getWireValue(new Wire("a")));
+        //System.out.println(getWireValue(new Wire("a")));
         //printWireConnections(); //DEBUG
+        //2
+        addWireConnection("b", new String[] {"3176"}, "EQUALS");
+        System.out.println(getWireValue(new Wire("a")));
         
 
     }
 
-    private static void printWireConnections() { //DEBUG
+    /* private static void printWireConnections() { //DEBUG
         for (String key : wireConnections.keySet()) {
             System.out.println(wireConnections.get(key).toString());
         }
-    }
+    } */
 
     private static int getWireValue(Wire wire) {
         if (wireConnections.containsKey(wire.getName())) {
@@ -86,7 +89,17 @@ public class Some_Assembly_Required {
             }
             return;
         }
+        addWireConnection(output, inputs, operator);
+        /* System.out.print(instruction + " | ");
+        
+        for (int i = 0; i<inputs.length; i++) {
+           System.out.print(inputs[i] + " ");
+        }
+        
+        System.out.println("| " + operator + " | " + output); */
+    }
 
+    private static void addWireConnection(String output, String[]inputs, String operator) {
         if (inputs.length == 1) {
             wireConnections.put(output, new WireConnection(
                 new Wire(inputs[0]),
@@ -101,15 +114,6 @@ public class Some_Assembly_Required {
                 operator
             ));
         }
-    
-
-        /* System.out.print(instruction + " | ");
-        
-        for (int i = 0; i<inputs.length; i++) {
-           System.out.print(inputs[i] + " ");
-        }
-        
-        System.out.println("| " + operator + " | " + output); */
     }
 
     private static String getOutputWire(String instruction) {
