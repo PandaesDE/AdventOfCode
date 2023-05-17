@@ -5,10 +5,9 @@ import java.util.ArrayList;
 import aoc.Conveniencer;
 
 public class Bathroom_Security {
-    private static final String FILE_PATH = Conveniencer.getProjectPath() + "/src/aoc/B2016/Day_2/input.txt";
 
     public static void main(String[] args) {
-        String input = Conveniencer.getInput(FILE_PATH);
+        String input = Conveniencer.getInput(2016, 2);
         // Exercise 1
         System.out.println(getCode(input));
         // Exercise 2

@@ -5,10 +5,9 @@ import java.util.ArrayList;
 import aoc.Conveniencer;
 
 public class Squares_With_Three_Sides {
-    private static final String FILE_PATH = Conveniencer.getProjectPath() + "/src/aoc/B2016/Day_3/input.txt";
 
     public static void main(String[] args) {
-        String input = Conveniencer.getInput(FILE_PATH);
+        String input = Conveniencer.getInput(2016, 3);
         // Exercise 1
         System.out.println(getTriangleAmount(input));
         // Exercise 2

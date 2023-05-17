@@ -7,10 +7,9 @@ import java.util.Set;
 import aoc.Conveniencer;
 
 public class Rucksack_Reorganization {
-    private static final String FILE_PATH = Conveniencer.getProjectPath() + "/src/aoc/I2022/Day03/input.txt";
 
     public static void main(String[] args) {
-        String input = Conveniencer.getInput(FILE_PATH);
+        String input = Conveniencer.getInput(2022, 3);
         ArrayList<String> backpacks = Conveniencer.convertTextToLines(input);
         // 1
         System.out.println(getSumOfPriorities(backpacks));

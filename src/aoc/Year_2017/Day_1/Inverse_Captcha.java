@@ -3,10 +3,9 @@ package aoc.Year_2017.Day_1;
 import aoc.Conveniencer;
 
 public class Inverse_Captcha {
-    private static final String FILE_PATH = Conveniencer.getProjectPath() + "/src/aoc/C2017/Day_1/input.txt";
 
     public static void main(String[] args) {
-        String input = Conveniencer.getInput(FILE_PATH);
+        String input = Conveniencer.getInput(2017, 1);
         // Exercise 1
         System.out.println(getCaptchaAtNextIndex(input));
         // Exercise 2

@@ -6,10 +6,9 @@ import java.util.HashMap;
 import aoc.Conveniencer;
 
 public class Signals_and_Noise {
-    private static final String FILE_PATH = Conveniencer.getProjectPath() + "/src/aoc/B2016/Day_1/input.txt";
 
     public static void main(String[] args) {
-        String input = Conveniencer.getInput(FILE_PATH);
+        String input = Conveniencer.getInput(2016, 6);
         // Exercise 1
         System.out.println(getErrorCorrectedVersion(createColumnStrings(input)));
         // Exercise 2

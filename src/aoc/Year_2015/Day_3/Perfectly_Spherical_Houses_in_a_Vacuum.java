@@ -5,10 +5,9 @@ import java.util.ArrayList;
 import aoc.Conveniencer;
 
 public class Perfectly_Spherical_Houses_in_a_Vacuum {
-    private static final String FILE_PATH = Conveniencer.getProjectPath() + "/src/aoc/A2015/Day_3/input.txt";
 
     public static void main(String[] args) {
-        String input = Conveniencer.getInput(FILE_PATH);
+        String input = Conveniencer.getInput(2015, 3);
         // Exercise 1
         System.out.println(getTotalHouseAmount(input));
         // Exercise 2

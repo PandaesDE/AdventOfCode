@@ -6,13 +6,12 @@ import java.util.HashMap;
 import aoc.Conveniencer;
 
 public class Some_Assembly_Required {
-    private static final String FILE_PATH = Conveniencer.getProjectPath() + "/src/aoc/A2015/Day_7/input.txt";
     private static final int MAX_BIX = 16;
 
     private static HashMap<String, WireConnection> wireConnections = new HashMap<>();
 
     public static void main(String[] args) {
-        String input = Conveniencer.getInput(FILE_PATH);
+        String input = Conveniencer.getInput(2015, 7);
         ArrayList<String> opterations = Conveniencer.convertTextToLines(input); // tree mby better?
         initializeWireConnections(opterations);
         // 1

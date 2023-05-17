@@ -3,14 +3,12 @@ package aoc.Year_2015.Day_8;
 import aoc.Conveniencer;
 
 public class Matchsticks {
-    private static final String FILE_PATH = Conveniencer.getProjectPath() + "/src/aoc/A2015/Day_8/input.txt";
     private static int chars_literals = 0;
     private static int chars_escaped = 0;
     private static int chars_encoded = 0;
 
     public static void main(String[] args) {
-        System.out.println(FILE_PATH);
-        String input = Conveniencer.getInput(FILE_PATH);
+        String input = Conveniencer.getInput(2015, 8);
         // Exercise 1
         calculateAllChars(input);
         calculateEscapedChars(input);

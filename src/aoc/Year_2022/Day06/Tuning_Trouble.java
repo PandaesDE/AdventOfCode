@@ -3,11 +3,10 @@ package aoc.Year_2022.Day06;
 import aoc.Conveniencer;
 
 public class Tuning_Trouble {
-    private static final String FILE_PATH = Conveniencer.getProjectPath() + "/src/aoc/I2022/Day06/input.txt";
     private static final int MAX_CHARS_FOR_MARKER = 4;
 
     public static void main(String[] args) {
-        String input = Conveniencer.getInput(FILE_PATH);
+        String input = Conveniencer.getInput(2022, 6);
 
         System.out.println(getMarker(input));
     }

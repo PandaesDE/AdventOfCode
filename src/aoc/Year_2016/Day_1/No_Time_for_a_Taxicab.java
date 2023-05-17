@@ -5,7 +5,6 @@ import java.util.ArrayList;
 import aoc.Conveniencer;
 
 public class No_Time_for_a_Taxicab {
-    private static final String FILE_PATH = Conveniencer.getProjectPath() + "/src/aoc/B2016/Day_1/input.txt";
     private static int X_POSITION = 0;
     private static int Y_POSITION = 0;
     private static char DIRECTION = 'N';
@@ -13,7 +12,7 @@ public class No_Time_for_a_Taxicab {
     private static boolean NOT_EQUAL_PAIR = true;
 
     public static void main(String[] args) {
-        String input = Conveniencer.getInput(FILE_PATH);
+        String input = Conveniencer.getInput(2016, 1);
         ArrayList<String> instructions = storeInput(trimInput(input));
         // Exercise 1
         calculateXAndYPosition(instructions);

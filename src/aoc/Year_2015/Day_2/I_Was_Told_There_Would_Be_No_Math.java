@@ -5,10 +5,9 @@ import java.util.ArrayList;
 import aoc.Conveniencer;
 
 public class I_Was_Told_There_Would_Be_No_Math {
-    private static final String FILE_PATH = Conveniencer.getProjectPath() + "/src/aoc/A2015/Day_2/input.txt";
 
     public static void main(String[] args) {
-        String input = Conveniencer.getInput(FILE_PATH);
+        String input = Conveniencer.getInput(2015, 2);
         // Exercise 1
         System.out.println(getTotalDimension(Conveniencer.convertTextToLines(input)));
         // Exercise 2

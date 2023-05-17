@@ -5,10 +5,9 @@ import java.util.ArrayList;
 import aoc.Conveniencer;
 
 public class Rock_Paper_Scissors {
-    private static final String FILE_PATH = Conveniencer.getProjectPath() + "/src/aoc/I2022/Day02/input.txt";
 
     public static void main(String[] args) {
-        String input = Conveniencer.getInput(FILE_PATH);
+        String input = Conveniencer.getInput(2022, 2);
         ArrayList<String> rounds = Conveniencer.convertTextToLines(input);
         // 1
         System.out.println(calculateScoreByGuide(rounds));

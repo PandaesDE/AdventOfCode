@@ -5,14 +5,13 @@ import java.util.ArrayList;
 import aoc.Conveniencer;
 
 public class Probably_a_Fire_Hazard {
-    private static final String FILE_PATH = Conveniencer.getProjectPath() + "/src/aoc/A2015/Day_6/input.txt";
     private static final int LIGHTS_X = 1000;
     private static final int LIGHTS_Y = 1000;
     private static boolean[][] lights = new boolean[LIGHTS_Y][LIGHTS_X];
     private static int[][] brightLights = new int[LIGHTS_Y][LIGHTS_X];
 
     public static void main(String[] args) {
-        String input = Conveniencer.getInput(FILE_PATH);
+        String input = Conveniencer.getInput(2015, 6);
         initializeLightsandBrightLights();
         // Exercise 1
         initializeInstructions(input);

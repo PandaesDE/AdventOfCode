@@ -5,10 +5,9 @@ import java.util.ArrayList;
 import aoc.Conveniencer;
 
 public class Camp_Cleanup {
-    private static final String FILE_PATH = Conveniencer.getProjectPath() + "/src/aoc/I2022/Day04/input.txt";
 
     public static void main(String[] args) {
-        String input = Conveniencer.getInput(FILE_PATH);
+        String input = Conveniencer.getInput(2022, 4);
         ArrayList<String> pairs = Conveniencer.convertTextToLines(input);
         // 1
         System.out.println(getAmountOfFullyContainedPairs(pairs));

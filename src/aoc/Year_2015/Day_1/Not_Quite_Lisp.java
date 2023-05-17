@@ -3,11 +3,9 @@ package aoc.Year_2015.Day_1;
 import aoc.Conveniencer;
 
 public class Not_Quite_Lisp {
-    private static final String FILE_PATH = Conveniencer.getProjectPath() + "/src/aoc/A2015/Day_1/input.txt";
 
     public static void main(String[] args) {
-        System.out.println(FILE_PATH);
-        String input = Conveniencer.getInput(FILE_PATH);
+        String input = Conveniencer.getInput(2015, 1);
         // Exercise 1
         System.out.println(parenthesisCount(input));
         // Exercise 2

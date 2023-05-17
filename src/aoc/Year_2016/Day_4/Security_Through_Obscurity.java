@@ -8,10 +8,9 @@ import java.util.Comparator;
 import aoc.Conveniencer;
 
 public class Security_Through_Obscurity {
-    private static final String FILE_PATH = Conveniencer.getProjectPath() + "/src/aoc/B2016/Day_4/input.txt";
 
     public static void main(String[] args) {
-        String input = Conveniencer.getInput(FILE_PATH);
+        String input = Conveniencer.getInput(2016, 4);
         // Exercise 1
         System.out.println(getSectorIDSum(input));
         // Exercise 2

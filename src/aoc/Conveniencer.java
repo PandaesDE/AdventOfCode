@@ -12,10 +12,19 @@ public class Conveniencer {
         return new File("").getAbsolutePath();
     }
 
-    public static String getInput(String dir) {
+    public static String getInput(int year, int day, String fileName) {
+        String path = getProjectPath() + "/src/aoc/Year_" + year + "/Day_" + day + "/" + fileName;
+        return getInput(path);
+    }
+
+    public static String getInput(int year, int day) {
+        return getInput(year, day, "input.txt");
+    }
+
+    public static String getInput(String path) {
         String input = "";
         try {
-            BufferedReader br = new BufferedReader(new FileReader(dir));
+            BufferedReader br = new BufferedReader(new FileReader(path));
             while (br.ready()) {
                 input += br.readLine() + "\n";
             }

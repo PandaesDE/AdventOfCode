@@ -6,17 +6,14 @@ import java.util.Stack;
 import aoc.Conveniencer;
 
 public class Supply_Stacks {
-    private static final String FILE_PATH_CRATES = Conveniencer.getProjectPath()
-            + "/src/aoc/I2022/Day05/input_crates.txt";
-    private static final String FILE_PATH_INSTRUCTIONS = Conveniencer.getProjectPath()
-            + "/src/aoc/I2022/Day05/input_instructions.txt";
     private static final int MODEL_NUMBER = 9001; // 9000 for first task, 9001 for second task
 
     private static ArrayList<Stack<Character>> stacks;
 
     public static void main(String[] args) {
-        ArrayList<String> crates = Conveniencer.convertTextToLines(Conveniencer.getInput(FILE_PATH_CRATES));
-        ArrayList<String> instructions = Conveniencer.convertTextToLines(Conveniencer.getInput(FILE_PATH_INSTRUCTIONS));
+        ArrayList<String> crates = Conveniencer.convertTextToLines(Conveniencer.getInput(2022, 5, "input_crates.txt"));
+        ArrayList<String> instructions = Conveniencer
+                .convertTextToLines(Conveniencer.getInput(2022, 5, "input_instructions.txt"));
 
         // 1 (MODEL_NUMBER == 9000), 2 (MODEL_NUMBER == 9001)
         initializeStacks(crates);
