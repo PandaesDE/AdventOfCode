@@ -13,7 +13,11 @@ public class Conveniencer {
     }
 
     public static String getInput(int year, int day, String fileName) {
-        String path = getProjectPath() + "/src/aoc/Year_" + year + "/Day_" + day + "/" + fileName;
+        String path = "";
+        if (day < 10)
+            path = getProjectPath() + "/src/aoc/Year_" + year + "/Day_0" + day + "/" + fileName;
+        else
+            path = getProjectPath() + "/src/aoc/Year_" + year + "/Day_" + day + "/" + fileName;
         return getInput(path);
     }
 

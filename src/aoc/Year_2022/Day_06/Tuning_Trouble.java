@@ -1,4 +1,4 @@
-package aoc.Year_2022.Day06;
+package aoc.Year_2022.Day_06;
 
 import aoc.Conveniencer;
 
