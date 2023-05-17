@@ -4,8 +4,6 @@ import java.util.ArrayList;
 import java.util.HashSet;
 import java.util.Set;
 
-import javax.swing.plaf.basic.BasicTextUI.BasicCaret;
-
 import aoc.Conveniencer;
 
 public class Rucksack_Reorganization {
@@ -14,9 +12,9 @@ public class Rucksack_Reorganization {
     public static void main(String[] args) {
         String input = Conveniencer.getInput(FILE_PATH);
         ArrayList<String> backpacks = Conveniencer.convertTextToLines(input);
-        //1
+        // 1
         System.out.println(getSumOfPriorities(backpacks));
-        //2
+        // 2
         System.out.println(getGroupPrioritySum(backpacks));
 
     }
@@ -31,7 +29,7 @@ public class Rucksack_Reorganization {
             if (iteration % 3 == 0) {
                 bp1 = i;
             } else if (iteration % 3 == 1) {
-                bp2 = i;    
+                bp2 = i;
             } else if (iteration % 3 == 2) {
                 bp3 = i;
                 prioritysum += evaluateCharPriority(getCommonCharacter(bp1, bp2, bp3));
@@ -47,8 +45,8 @@ public class Rucksack_Reorganization {
         ArrayList<String> compartments1 = new ArrayList<>();
         ArrayList<String> compartments2 = new ArrayList<>();
         for (String i : backpacks) {
-            String a = i.substring(0, i.length()/2);
-            String b = i.substring(i.length()/2, i.length());
+            String a = i.substring(0, i.length() / 2);
+            String b = i.substring(i.length() / 2, i.length());
             compartments1.add(a);
             compartments2.add(b);
             Set<Character> commonCharacters = getCommonCharacter(a, b);
@@ -72,9 +70,9 @@ public class Rucksack_Reorganization {
     private static Set<Character> getCommonCharacter(String a, String b) {
         Set<Character> commonCharacters = new HashSet<Character>() {
         };
-        for (int i = 0; i<a.length(); i++) {
-            for (int j = 0; j<b.length(); j++) {
-                if (a.charAt(i) == b.charAt(j))  {
+        for (int i = 0; i < a.length(); i++) {
+            for (int j = 0; j < b.length(); j++) {
+                if (a.charAt(i) == b.charAt(j)) {
                     commonCharacters.add(a.charAt(i));
                 }
             }

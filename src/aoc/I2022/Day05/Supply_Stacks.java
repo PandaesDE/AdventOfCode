@@ -6,9 +6,11 @@ import java.util.Stack;
 import aoc.Conveniencer;
 
 public class Supply_Stacks {
-    private static final String FILE_PATH_CRATES = Conveniencer.getProjectPath() + "/src/aoc/I2022/Day05/input_crates.txt";
-    private static final String FILE_PATH_INSTRUCTIONS = Conveniencer.getProjectPath() + "/src/aoc/I2022/Day05/input_instructions.txt";
-    private static final int MODEL_NUMBER = 9001; //9000 for first task, 9001 for second task
+    private static final String FILE_PATH_CRATES = Conveniencer.getProjectPath()
+            + "/src/aoc/I2022/Day05/input_crates.txt";
+    private static final String FILE_PATH_INSTRUCTIONS = Conveniencer.getProjectPath()
+            + "/src/aoc/I2022/Day05/input_instructions.txt";
+    private static final int MODEL_NUMBER = 9001; // 9000 for first task, 9001 for second task
 
     private static ArrayList<Stack<Character>> stacks;
 
@@ -16,12 +18,12 @@ public class Supply_Stacks {
         ArrayList<String> crates = Conveniencer.convertTextToLines(Conveniencer.getInput(FILE_PATH_CRATES));
         ArrayList<String> instructions = Conveniencer.convertTextToLines(Conveniencer.getInput(FILE_PATH_INSTRUCTIONS));
 
-        //1 (MODEL_NUMBER == 9000), 2 (MODEL_NUMBER == 9001)
+        // 1 (MODEL_NUMBER == 9000), 2 (MODEL_NUMBER == 9001)
         initializeStacks(crates);
-        //printAllStacks();
-        //printTopContainerOfStacks();
+        // printAllStacks();
+        // printTopContainerOfStacks();
         followInstructions(instructions);
-        //printAllStacks();
+        // printAllStacks();
         printTopContainerOfStacks();
     }
 
@@ -34,23 +36,23 @@ public class Supply_Stacks {
     private static void followInstruction(int[] instructionValues, int modelNumber) {
         if (modelNumber == 9000) {
             for (int i = 0; i < instructionValues[0]; i++) {
-                stacks.get(instructionValues[2]-1).push(    
-                    stacks.get(instructionValues[1]-1).pop()
-                );
+                stacks.get(instructionValues[2] - 1).push(
+                        stacks.get(instructionValues[1] - 1).pop());
             }
         }
         if (modelNumber == 9001) {
             char[] container = new char[instructionValues[0]];
             for (int i = 0; i < instructionValues[0]; i++) {
-                container[i] = stacks.get(instructionValues[1]-1).pop();
+                container[i] = stacks.get(instructionValues[1] - 1).pop();
             }
-            for (int i = instructionValues[0]-1; i > -1 ; i--) {
-                stacks.get(instructionValues[2]-1).push(container[i]);
+            for (int i = instructionValues[0] - 1; i > -1; i--) {
+                stacks.get(instructionValues[2] - 1).push(container[i]);
             }
         }
     }
 
-    /* values[].length == 3
+    /*
+     * values[].length == 3
      * [0] value of amount
      * [1] value of stackindex(+1) taken containers from
      * [2] value of stackindex(+1) taking containers to
@@ -61,7 +63,7 @@ public class Supply_Stacks {
         instruction = instruction.replace("to ", "");
         String[] stringValues = instruction.split(" ");
         int[] values = new int[stringValues.length];
-        for (int i = 0; i<stringValues.length; i++) {
+        for (int i = 0; i < stringValues.length; i++) {
             values[i] = Conveniencer.stringToInt(stringValues[i]);
         }
         return values;
@@ -69,14 +71,16 @@ public class Supply_Stacks {
 
     private static void initializeStacks(ArrayList<String> crates) {
         stacks = new ArrayList<Stack<Character>>();
-        for (int i = crates.size()-1; i > -1; i--) {
-            if (i != crates.size()-1) {
+        for (int i = crates.size() - 1; i > -1; i--) {
+            if (i != crates.size() - 1) {
                 int crateI = 0;
                 while (true) {
                     crateI = crates.get(i).indexOf("[", crateI);
-                    if (crateI != -1) crateI++;
-                    else break;
-                    addToStack(crateI/4, crates.get(i).charAt(crateI));
+                    if (crateI != -1)
+                        crateI++;
+                    else
+                        break;
+                    addToStack(crateI / 4, crates.get(i).charAt(crateI));
                 }
             }
         }
@@ -96,10 +100,14 @@ public class Supply_Stacks {
         System.out.println();
     }
 
-    private static void printAllStacks() {
-        for (Stack<Character> i : stacks) {
-            System.out.println(i.toString());
-        }
-        System.out.println("--");
-    }
+    // #region DEBUG
+    /*
+     * private static void printAllStacks() {
+     * for (Stack<Character> i : stacks) {
+     * System.out.println(i.toString());
+     * }
+     * System.out.println("--");
+     * }
+     */
+    // #endregion
 }
