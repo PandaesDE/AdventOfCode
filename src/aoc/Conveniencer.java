@@ -16,20 +16,20 @@ public class Conveniencer {
         String input = "";
         try {
             BufferedReader br = new BufferedReader(new FileReader(dir));
-            while (br.ready()){
+            while (br.ready()) {
                 input += br.readLine() + "\n";
             }
             br.close();
         } catch (IOException e) {
             e.printStackTrace();
-            return("");
+            return ("");
         }
         return input;
     }
 
     public static ArrayList<String> convertTextToLines(String text) {
         ArrayList<String> lines = new ArrayList<>();
-        //Exception if no breakLine
+        // Exception if no breakLine
         if (text.indexOf("\n") == -1) {
             lines.add(text);
             return lines;
@@ -38,14 +38,15 @@ public class Conveniencer {
         int nextBreakLineIndex = 0;
         while (true) {
             nextBreakLineIndex = text.indexOf("\n", breakLineIndex);
-            if (nextBreakLineIndex == -1) break;
+            if (nextBreakLineIndex == -1)
+                break;
             lines.add(text.substring(breakLineIndex, nextBreakLineIndex));
-            breakLineIndex = nextBreakLineIndex+1;
+            breakLineIndex = nextBreakLineIndex + 1;
         }
         return lines;
     }
 
-    public static int stringToInt(String s){
+    public static int stringToInt(String s) {
         try {
             int i = Integer.parseInt(s);
             return i;
@@ -53,5 +54,21 @@ public class Conveniencer {
             System.out.println("\"" + s + "\" can not be parsed to an int value, returned int = 0");
             return 0;
         }
+    }
+
+    // https://stackoverflow.com/questions/767759/find-the-number-of-occurrences-of-a-substring-in-a-string
+    public static int findOccurences(String s, String subS) {
+        int lastIndex = 0;
+        int count = 0;
+
+        while (lastIndex != -1) {
+            lastIndex = s.indexOf(subS, lastIndex);
+            if (lastIndex != -1) {
+                count++;
+                lastIndex += subS.length();
+            }
+        }
+
+        return count;
     }
 }
