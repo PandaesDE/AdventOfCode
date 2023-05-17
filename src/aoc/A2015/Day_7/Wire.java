@@ -9,19 +9,21 @@ public class Wire {
         if (name.matches("-?\\d+")) {
             this.value = Integer.parseInt(name);
         } else {
-            this.value = -1;
+            this.value = 0;
         }
     }
 
+
+    //getter
     public int getValue() {
         return this.value;
     }
-
 
     public String getName() {
         return this.name;
     }
 
+    //setter
     public void setName(String name) {
         this.name = name;
     }

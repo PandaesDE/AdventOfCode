@@ -16,48 +16,55 @@ public class Some_Assembly_Required {
         ArrayList<String> opterations = Conveniencer.convertTextToLines(input); //tree mby better?
         initializeWireConnections(opterations);
         //1
+        //System.out.println(getWireValue(new Wire("a")));
+        //printWireConnections(); //DEBUG
+        //2
+        addWireConnection("b", new String[] {"3176"}, "EQUALS");
         System.out.println(getWireValue(new Wire("a")));
-        //testAllBitOperations(1, 1);
         
 
     }
 
+    /* private static void printWireConnections() { //DEBUG
+        for (String key : wireConnections.keySet()) {
+            System.out.println(wireConnections.get(key).toString());
+        }
+    } */
+
     private static int getWireValue(Wire wire) {
-        int val = 0;
-
         if (wireConnections.containsKey(wire.getName())) {
-            val = wireConnections.get(wire.getName()).getOutput().getValue();
-        } else {
-            val = wire.getValue();
+            if (WireCache.containsValue(wire.getName())) {
+                return WireCache.get(wire.getName());
+            }
+            WireCache.add(wire.getName(), getOperationValue(wireConnections.get(wire.getName())));
+            return getOperationValue(wireConnections.get(wire.getName()));
         }
-
-        //System.out.println(val); //DEBUG
-        if (val != -1) {
-            return val; 
-        }
-
-        return getOperationValue(wireConnections.get(wire.getName()));
+       return wire.getValue();
     }
 
     private static int getOperationValue(WireConnection wc) {
-        //System.out.println(wc.toString()); //DEBUG
+        System.out.println(wc.toString()); //DEBUG
 
         if (wc.getOperator() == "AND") {
-            return bitwiseAnd(getWireValue(wc.getInput1()), getWireValue(wc.getInput2()));
+            return getWireValue(wc.getInput1()) & getWireValue(wc.getInput2());
         }
         if (wc.getOperator() == "OR") {
-            return bitwiseOr(getWireValue(wc.getInput1()), getWireValue(wc.getInput2()));
+            return getWireValue(wc.getInput1()) | getWireValue(wc.getInput2());
         }
         if (wc.getOperator() == "NOT") {
-            return not(getWireValue(wc.getInput1()));
+            return (int) (Math.pow(2, MAX_BIX) - 1) - getWireValue(wc.getInput1());
         }
         if (wc.getOperator() == "RSHIFT") {
-            return lShift(getWireValue(wc.getInput1()), getWireValue(wc.getInput2()));
+            return getWireValue(wc.getInput1()) >> getWireValue(wc.getInput2());
         }
         if (wc.getOperator() == "LSHIFT") {
-            return rShift(getWireValue(wc.getInput1()), getWireValue(wc.getInput2()));
+            return getWireValue(wc.getInput1()) << getWireValue(wc.getInput2());
         }
-        return getWireValue(wc.getInput1());
+        //EQUALS (destinction between wire and value)
+        if (wireConnections.containsKey(wc.getInput1().getName())) {
+            return getWireValue(wc.getInput1());
+        }
+        return wc.getInput1().getValue();
     }
 
     private static void initializeWireConnections(ArrayList<String> operations) {
@@ -72,40 +79,41 @@ public class Some_Assembly_Required {
         String output = getOutputWire(instruction);
 
         if (wireConnections.containsKey(output)) {
-            if (inputs.length == 1) {
-                wireConnections.get(output).setOutput(new Wire(output));
-                wireConnections.get(output).setInput1(new Wire(inputs[0]));
-                wireConnections.get(output).setOperator(operator);
-            } else {
-                wireConnections.get(output).setOutput(new Wire(output));
-                wireConnections.get(output).setInput1(new Wire(inputs[0]));
+            wireConnections.get(output).setOutput(new Wire(output));
+            wireConnections.get(output).setInput1(new Wire(inputs[0]));
+            wireConnections.get(output).setInput2(null);
+            wireConnections.get(output).setOperator(operator);
+            
+            if (inputs.length == 2) {
                 wireConnections.get(output).setInput2(new Wire(inputs[1]));
-                wireConnections.get(output).setOperator(operator);
             }
-        } else {
-            if (inputs.length == 1) {
-                wireConnections.put(output, new WireConnection(
-                    new Wire(inputs[0]),
-                    new Wire(output),
-                    operator
-                ));
-            } else {
-                wireConnections.put(output, new WireConnection(
-                    new Wire(inputs[0]),
-                    new Wire(inputs[1]),
-                    new Wire(output),
-                    operator
-                ));
-            }
+            return;
         }
+        addWireConnection(output, inputs, operator);
+        /* System.out.print(instruction + " | ");
+        
+        for (int i = 0; i<inputs.length; i++) {
+           System.out.print(inputs[i] + " ");
+        }
+        
+        System.out.println("| " + operator + " | " + output); */
+    }
 
-        //System.out.print(instruction + " | ");
-        //
-        //for (int i = 0; i<inputs.length; i++) {
-        //    System.out.print(inputs[i] + " ");
-        //}
-        //
-        //System.out.println("| " + operator + " | " + output);
+    private static void addWireConnection(String output, String[]inputs, String operator) {
+        if (inputs.length == 1) {
+            wireConnections.put(output, new WireConnection(
+                new Wire(inputs[0]),
+                new Wire(output),
+                operator
+            ));
+        } else {
+            wireConnections.put(output, new WireConnection(
+                new Wire(inputs[0]),
+                new Wire(inputs[1]),
+                new Wire(output),
+                operator
+            ));
+        }
     }
 
     private static String getOutputWire(String instruction) {
@@ -119,7 +127,7 @@ public class Some_Assembly_Required {
     private static String[] getInputWires(String instruction, String operator) {
         instruction = instruction.substring(0, instruction.indexOf("-"));
         instruction = instruction.replaceAll(" ", "");
-        if (operator == "NOT" || operator == "EQUALS") {
+        if (operator.equals("NOT") || operator.equals("EQUALS")) {
             return new String[] {instruction.replaceAll(operator, "")};
         }
         return instruction.split(operator);
@@ -137,15 +145,4 @@ public class Some_Assembly_Required {
         if (instruction.contains("LSHIFT")) return "LSHIFT";
         return "EQUALS";
     }
-
-
-    private static int not(int a) {return (int) (Math.pow(2, MAX_BIX) - 1) - a;}
-
-    private static int lShift(int a, int shift) {return a << shift;}
-
-    private static int rShift(int a, int shift) {return a >> shift;}
-
-    private static int bitwiseOr(int a, int b) {return a | b;}
-
-    private static int bitwiseAnd(int a, int b) {return a & b;}
 }

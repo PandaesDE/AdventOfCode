@@ -1,5 +1,9 @@
 package aoc.A2015.Day_7;
 
+
+//Each wire can only get a signal from one source, but can provide its signal to multiple destinations. 
+//A gate provides no signal until all of its inputs have a signal.
+
 public class WireConnection {
     private Wire input1;
     private Wire input2;
@@ -28,9 +32,9 @@ public class WireConnection {
             ipt2 = this.input2.getName();
         }
         return "{" +
-            " input1='" + getInput1().getName() + "'" +
-            ", input2='" + getInput2().getName() + "'" +
-            ", output='" + getOutput().getName() + "'" +
+            "output='" + getOutput().getName() + "'" +
+            ", input1='" + getInput1().getName() + "'" +
+            ", input2='" + ipt2 + "'" +
             ", operator='" + getOperator() + "'" +
             "}";
     }
